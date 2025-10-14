@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EveryMotion | The Motion of the Future</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&family=Playfair+Display:wght@700&family=Orbitron:wght@700&family=Pacifico&family=Courier+Prime:wght@700&display=swap" rel="stylesheet">
+  <style>
     * {margin: 0; padding: 0; box-sizing: border-box;}
     body {
       font-family: 'Inter', sans-serif;
@@ -26,7 +27,6 @@
       text-align: center;
       background: linear-gradient(120deg, #ffffff, #f2f4f7);
       overflow: hidden;
-      z-index: 0;
     }
     header h1 {
       font-size: 3rem;
@@ -104,7 +104,7 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      z-index: 1;
+      z-index: 0;
     }
 
     @keyframes fadeIn {
@@ -118,8 +118,7 @@
 
   <header>
     <h1>The Motion of the Future Is in Your Hands</h1>
-      <p>AI-powered motion tracking that understands <br><span id="adaptiveYou"><strong>YOU</strong></span></br> <br> </br></p>
-      <p>Naturally, Seamlessly, Completely.</p>
+    <p>AI-powered motion tracking that understands <br><span id="adaptiveYou"><strong>YOU</strong></span> — naturally, seamlessly, completely.</p>
   </header>
 
   <section id="about" class="two-col">
@@ -167,54 +166,44 @@
 
   <footer>
     <p>© 2025 EveryMotion. All rights reserved.</p>
-    <p>Connect with us: contact@every-motion.com</p>
+    <p>Connect with us: contact@everymotion.io</p>
   </footer>
 
   <script>
+    // Trail animation
     const canvas = document.getElementById('trailCanvas');
     const ctx = canvas.getContext('2d');
+    let width = window.innerWidth, height = window.innerHeight;
+    canvas.width = width; canvas.height = height;
+    const trail = []; let maxTrail = 50; let mouseX = 0, mouseY = 0, lastX = 0, lastY = 0, speed = 0;
 
-    let width = window.innerWidth;
-    let height = window.innerHeight;
-    canvas.width = width;
-    canvas.height = height;
-
-    const trail = [];
-    const maxTrail = 10;
-    let mouseX = 0, mouseY = 0;
-
-    window.addEventListener('resize', () => {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-    });
-
+    window.addEventListener('resize', () => {width = window.innerWidth; height = window.innerHeight; canvas.width = width; canvas.height = height;});
     document.addEventListener('mousemove', e => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      trail.push({x: mouseX, y: mouseY, alpha: 1});
-      if (trail.length > maxTrail) trail.shift();
+      mouseX = e.clientX; mouseY = e.clientY;
+      const dx = mouseX - lastX, dy = mouseY - lastY; speed = Math.sqrt(dx*dx + dy*dy);
+      lastX = mouseX; lastY = mouseY;
+      maxTrail = Math.min(60, 15 + speed * 0.7);
+      const alphaDecay = 0.03 + speed / 600;
+      for (let i = 0; i < 2; i++) trail.push({x: mouseX, y: mouseY, alpha: 1, decay: alphaDecay});
+      if (trail.length > maxTrail) trail.splice(0, trail.length - maxTrail);
     });
 
-    function animate() {
+    function animateTrail() {
       ctx.clearRect(0, 0, width, height);
-      ctx.lineWidth = 3;
+      ctx.lineWidth = 2.2;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
-
       for (let i = 0; i < trail.length - 1; i++) {
-        const p1 = trail[i];
-        const p2 = trail[i + 1];
+        const p1 = trail[i]; const p2 = trail[i + 1];
         ctx.strokeStyle = `rgba(100,100,255,${p1.alpha})`;
-        ctx.beginPath();
-        ctx.moveTo(p1.x, p1.y);
-        ctx.lineTo(p2.x, p2.y);
-        ctx.stroke();
-        p1.alpha -= 0.05;
+        ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y); ctx.stroke();
+        p1.alpha -= p1.decay;
       }
+      requestAnimationFrame(animateTrail);
     }
+    animateTrail();
 
+    // Adaptive YOU typing animation
     const adaptiveYou = document.getElementById('adaptiveYou');
     const fonts = ["Inter", "Playfair Display", "Orbitron", "Pacifico", "Courier Prime"];
     let fontIndex = 0;
@@ -235,9 +224,6 @@
       }, 100);
     }
 
-      requestAnimationFrame(animate);
-    
-
     function eraseEffect() {
       const text = adaptiveYou.textContent;
       let i = text.length;
@@ -256,7 +242,6 @@
     setInterval(() => {
       if (!typing) eraseEffect();
     }, 1400);
-    animate();
   </script>
 </body>
 </html>
