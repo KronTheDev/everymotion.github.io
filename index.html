@@ -165,8 +165,7 @@
     canvas.height = height;
 
     const trail = [];
-    const maxTrail = 40;
-
+    const maxTrail = 20;
     let mouseX = 0, mouseY = 0;
 
     window.addEventListener('resize', () => {
@@ -185,21 +184,21 @@
 
     function animate() {
       ctx.clearRect(0, 0, width, height);
+      ctx.lineWidth = 2.5;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+
       for (let i = 0; i < trail.length - 1; i++) {
         const p1 = trail[i];
         const p2 = trail[i + 1];
-        const grad = ctx.createLinearGradient(p1.x, p1.y, p2.x, p2.y);
-        grad.addColorStop(0, `rgba(120,120,255,${p1.alpha})`);
-        grad.addColorStop(1, `rgba(100,100,255,${p2.alpha})`);
-        ctx.strokeStyle = grad;
-        ctx.lineWidth = 6;
-        ctx.lineCap = 'round';
+        ctx.strokeStyle = `rgba(100,100,255,${p1.alpha})`;
         ctx.beginPath();
         ctx.moveTo(p1.x, p1.y);
         ctx.lineTo(p2.x, p2.y);
         ctx.stroke();
-        p1.alpha -= 0.02;
+        p1.alpha -= 0.05;
       }
+
       requestAnimationFrame(animate);
     }
 
