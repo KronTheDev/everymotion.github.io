@@ -244,7 +244,7 @@
         if (i < 0) {
           clearInterval(interval);
           fontIndex = (fontIndex + 1) % fonts.length;
-          setTimeout(() => typeEffect('YOU', fonts[fontIndex]), 250);
+          setTimeout(() => typeEffect('YOU', fonts[fontIndex]), 100);
         }
       }, 60);
     }
@@ -252,7 +252,7 @@
     typeEffect('YOU', fonts[0]);
     setInterval(() => {
       if (!typing) eraseEffect();
-    }, 1400);
+    }, 2500);
   </script>
 </body>
 </html>
