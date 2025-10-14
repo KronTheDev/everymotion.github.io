@@ -189,13 +189,11 @@
       lastX = mouseX;
       lastY = mouseY;
 
-      maxTrail = Math.min(60, 15 + speed * 0.7);
-      const alphaDecay = 0.03 + speed / 600;
+      maxTrail = Math.min(40, 10 + speed / 2);
+      const alphaDecay = 0.05 + speed / 300;
 
-      for (let i = 0; i < 2; i++) { // emit more particles for smoother flow
-        trail.push({x: mouseX, y: mouseY, alpha: 1, decay: alphaDecay});
-      }
-      if (trail.length > maxTrail) trail.splice(0, trail.length - maxTrail);
+      trail.push({x: mouseX, y: mouseY, alpha: 1, decay: alphaDecay});
+      if (trail.length > maxTrail) trail.shift();
     });
 
     function animate() {
