@@ -74,10 +74,10 @@
       margin-top: 3rem;
     }
     .feature {
-      background: #f9f9fb;
+      background: #efeeee;
       padding: 2rem;
       border-radius: 12px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
       transition: transform 0.3s ease;
     }
     .feature:hover {transform: translateY(-5px);}
@@ -96,6 +96,11 @@
       color: #666;
       font-size: 0.9rem;
     }
+
+    .button_a {
+      transition: transform 0.3s ease;
+    }
+    .button_a:hover {transform: translateY(-3px);}
 
     canvas#trailCanvas {
       position: fixed;
@@ -118,7 +123,11 @@
 
   <header>
     <h1>The Motion of the Future Is in Your Hands</h1>
-    <p>AI-powered motion tracking that understands <br><span id="adaptiveYou"><strong>YOU</strong></span> — naturally, seamlessly, completely.</p>
+    <p>AI-powered motion tracking that understands <br><span id="adaptiveYou"><strong>YOU</strong></span><br></p>
+    <br>
+    <h3>Naturally</h3><br><br>
+    <h2>Seamlessly</h2><br><br>
+    <h1><strong>Completely</strong></h1>
   </header>
 
   <section id="about" class="two-col">
@@ -127,7 +136,7 @@
       <p>EveryMotion removes the barriers between you and your virtual world. No sensors. No controllers. Just movement — as it’s meant to be. Our technology learns, adapts, and evolves with every gesture you make, bringing a level of freedom that redefines immersion.</p>
     </div>
     <div>
-      <img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=800&q=80" alt="Motion tracking demo" style="width:100%; border-radius:12px;">
+      <img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=800&q=80" alt="Motion tracking demo" style="box-shadow: -1rem -2rem #7070703b;width:100%; border-radius:12px;">
     </div>
   </section>
 
@@ -159,8 +168,10 @@
     <h2>For Developers</h2>
     <p>Build the future with us — open SDK access for creators and researchers who dare to shape the next generation of digital interaction.</p>
     <div style="margin-top:2rem;">
-      <button style="padding:1rem 2rem; border:none; background:#333; color:#fff; border-radius:8px; cursor:pointer; margin-right:1rem;">Request Early Access</button>
-      <button style="padding:1rem 2rem; border:1px solid #333; background:transparent; color:#333; border-radius:8px; cursor:pointer;">View Documentation</button>
+      <a href="https://github.com/KronTheDev/everymotion.github.io">
+        <button class="button_a" style="box-shadow:0.5rem 1rem black;padding:1rem 2rem; border:none; background:#333; color:#fff; border-radius:8px; cursor:pointer; margin-right:1rem;">Request Early Access</button>
+      </a>
+      <button class="button_a" style="box-shadow:0.5rem 1rem gray;padding:1rem 2rem; border:1px solid #333; background:transparent; color:#333; border-radius:8px; cursor:pointer;">View Documentation</button>
     </div>
   </section>
 
@@ -170,13 +181,13 @@
   </footer>
 
   <script>
-    // Replaced trail animation with laminar comet-tail effect
+    // Laminar streak animation from second version
     const canvas = document.getElementById('trailCanvas');
     const ctx = canvas.getContext('2d');
     let width = window.innerWidth, height = window.innerHeight;
     canvas.width = width; canvas.height = height;
 
-    let points = [];
+    const points = [];
 
     window.addEventListener('resize', () => {
       width = window.innerWidth;
@@ -187,7 +198,7 @@
 
     document.addEventListener('mousemove', e => {
       points.push({x: e.clientX, y: e.clientY, alpha: 1});
-      if (points.length > 100) points.shift();
+      if (points.length > 120) points.shift();
     });
 
     function animateTrail() {
@@ -199,19 +210,19 @@
           const p = points[i];
           ctx.lineTo(p.x, p.y);
         }
-        const gradient = ctx.createLinearGradient(points[0].x, points[0].y, points[points.length-1].x, points[points.length-1].y);
+        const gradient = ctx.createLinearGradient(points[0].x, points[0].y, points[points.length - 1].x, points[points.length - 1].y);
         gradient.addColorStop(0, 'rgba(100, 100, 255, 0)');
         gradient.addColorStop(0.2, 'rgba(100, 100, 255, 0.5)');
         gradient.addColorStop(1, 'rgba(100, 100, 255, 1)');
         ctx.strokeStyle = gradient;
-        ctx.lineWidth = 2.2;
+        ctx.lineWidth = 2.4;
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
         ctx.stroke();
       }
 
       for (let i = 0; i < points.length; i++) {
-        points[i].alpha -= 0.015;
+        points[i].alpha -= 0.01;
       }
       points = points.filter(p => p.alpha > 0);
 
