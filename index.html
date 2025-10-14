@@ -24,7 +24,6 @@
       background: linear-gradient(120deg, #ffffff, #f2f4f7);
       position: relative;
       overflow: hidden;
-      z-index: 10;
     }
     header h1 {
       font-size: 3rem;
@@ -41,8 +40,6 @@
       padding: 5rem 10%;
       max-width: 1200px;
       margin: auto;
-      position: relative;
-      z-index: 10;
     }
     .two-col {
       display: flex;
@@ -84,8 +81,6 @@
       background: #f4f5f7;
       color: #666;
       font-size: 0.9rem;
-      position: relative;
-      z-index: 10;
     }
 
     canvas#trailCanvas {
@@ -95,7 +90,7 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      z-index: 1; /* Behind all content */
+      z-index: 9999;
     }
 
     @keyframes fadeIn {
@@ -157,7 +152,7 @@
 
   <footer>
     <p>© 2025 EveryMotion. All rights reserved.</p>
-    <p>Connect with us: contact@everymotion.io</p>
+    <p>Connect with us: contact@everymotion.com</p>
   </footer>
 
   <script>
@@ -170,10 +165,8 @@
     canvas.height = height;
 
     const trail = [];
-    let maxTrail = 20;
+    const maxTrail = 20;
     let mouseX = 0, mouseY = 0;
-    let lastX = 0, lastY = 0;
-    let speed = 0;
 
     window.addEventListener('resize', () => {
       width = window.innerWidth;
@@ -185,22 +178,13 @@
     document.addEventListener('mousemove', e => {
       mouseX = e.clientX;
       mouseY = e.clientY;
-      const dx = mouseX - lastX;
-      const dy = mouseY - lastY;
-      speed = Math.sqrt(dx * dx + dy * dy);
-      lastX = mouseX;
-      lastY = mouseY;
-
-      maxTrail = Math.min(40, 10 + speed / 2);
-      const alphaDecay = 0.05 + speed / 300;
-
-      trail.push({x: mouseX, y: mouseY, alpha: 1, decay: alphaDecay});
+      trail.push({x: mouseX, y: mouseY, alpha: 1});
       if (trail.length > maxTrail) trail.shift();
     });
 
     function animate() {
       ctx.clearRect(0, 0, width, height);
-      ctx.lineWidth = 2.2;
+      ctx.lineWidth = 1.5;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
 
@@ -212,7 +196,7 @@
         ctx.moveTo(p1.x, p1.y);
         ctx.lineTo(p2.x, p2.y);
         ctx.stroke();
-        p1.alpha -= p1.decay;
+        p1.alpha -= 0.05;
       }
 
       requestAnimationFrame(animate);
