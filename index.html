@@ -165,7 +165,7 @@
     canvas.height = height;
 
     const trail = [];
-    const maxTrail = 20;
+    const maxTrail = 10;
     let mouseX = 0, mouseY = 0;
 
     window.addEventListener('resize', () => {
@@ -184,7 +184,7 @@
 
     function animate() {
       ctx.clearRect(0, 0, width, height);
-      ctx.lineWidth = 1.5;
+      ctx.lineWidth = 3;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
 
