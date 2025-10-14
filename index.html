@@ -120,6 +120,7 @@
 </head>
 <body>
   <canvas id="trailCanvas"></canvas>
+  <div class="dot" id="dot"></div>
 
   <header>
     <h1>The Motion of the Future Is in Your Hands</h1>
@@ -212,7 +213,11 @@
       }
       requestAnimationFrame(animateTrail);
     }
-    animateTrail();
+
+    const dot = document.getElementById('trail');
+    document.addEventListener('mousemove', e => {
+      dot.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+    });
 
     // Adaptive YOU typing animation
     const adaptiveYou = document.getElementById('adaptiveYou');
