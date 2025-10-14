@@ -83,23 +83,24 @@
       font-size: 0.9rem;
     }
 
-    /* Motion Trail */
+    /* Cinematic motion trail */
     .trail-piece {
       position: fixed;
       top: 0; left: 0;
-      width: 8px; height: 8px;
-      background: rgba(100,100,255,0.4);
+      width: 12px; height: 12px;
+      background: radial-gradient(circle, rgba(100,100,255,0.6) 0%, rgba(100,100,255,0.1) 100%);
       border-radius: 50%;
       pointer-events: none;
       z-index: 1000;
       opacity: 1;
-      transform: translate(-50%, -50%);
-      animation: fadeTrail 0.6s linear forwards;
+      transform: translate(-50%, -50%) scale(1);
+      animation: fadeTrail 1s ease-out forwards;
+      filter: blur(2px);
     }
 
     @keyframes fadeTrail {
-      from {opacity: 1; transform: scale(1) translate(-50%, -50%);}
-      to {opacity: 0; transform: scale(0.2) translate(-50%, -50%);}
+      0% {opacity: 1; transform: translate(-50%, -50%) scale(1);}
+      100% {opacity: 0; transform: translate(-50%, -50%) scale(0.1);}
     }
 
     @keyframes fadeIn {
@@ -164,16 +165,18 @@
   </footer>
 
   <script>
-    // Progressive fading streak trail
+    // Cinematic fading streak trail
     document.addEventListener('mousemove', e => {
-      const trailPiece = document.createElement('div');
-      trailPiece.classList.add('trail-piece');
-      trailPiece.style.left = e.pageX + 'px';
-      trailPiece.style.top = e.pageY + 'px';
-      document.body.appendChild(trailPiece);
-      setTimeout(() => {
-        trailPiece.remove();
-      }, 600);
+      for (let i = 0; i < 3; i++) {
+        const trailPiece = document.createElement('div');
+        trailPiece.classList.add('trail-piece');
+        const offsetX = e.pageX + (Math.random() - 0.5) * 10;
+        const offsetY = e.pageY + (Math.random() - 0.5) * 10;
+        trailPiece.style.left = offsetX + 'px';
+        trailPiece.style.top = offsetY + 'px';
+        document.body.appendChild(trailPiece);
+        setTimeout(() => trailPiece.remove(), 1000);
+      }
     });
   </script>
 </body>
