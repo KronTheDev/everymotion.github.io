@@ -83,24 +83,14 @@
       font-size: 0.9rem;
     }
 
-    /* Cinematic motion trail */
-    .trail-piece {
+    canvas#trailCanvas {
       position: fixed;
-      top: 0; left: 0;
-      width: 12px; height: 12px;
-      background: radial-gradient(circle, rgba(100,100,255,0.6) 0%, rgba(100,100,255,0.1) 100%);
-      border-radius: 50%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       pointer-events: none;
-      z-index: 1000;
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-      animation: fadeTrail 1s ease-out forwards;
-      filter: blur(2px);
-    }
-
-    @keyframes fadeTrail {
-      0% {opacity: 1; transform: translate(-50%, -50%) scale(1);}
-      100% {opacity: 0; transform: translate(-50%, -50%) scale(0.1);}
+      z-index: 9999;
     }
 
     @keyframes fadeIn {
@@ -110,6 +100,7 @@
   </style>
 </head>
 <body>
+  <canvas id="trailCanvas"></canvas>
 
   <header>
     <h1>The Motion of the Future Is in Your Hands</h1>
@@ -165,19 +156,54 @@
   </footer>
 
   <script>
-    // Cinematic fading streak trail
-    document.addEventListener('mousemove', e => {
-      for (let i = 0; i < 10; i++) {
-        const trailPiece = document.createElement('div');
-        trailPiece.classList.add('trail-piece');
-        const offsetX = e.pageX + (Math.random() - 0.5) * 10;
-        const offsetY = e.pageY + (Math.random() - 0.5) * 10;
-        trailPiece.style.left = offsetX + 'px';
-        trailPiece.style.top = offsetY + 'px';
-        document.body.appendChild(trailPiece);
-        setTimeout(() => trailPiece.remove(), 1000);
-      }
+    const canvas = document.getElementById('trailCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+
+    const trail = [];
+    const maxTrail = 40;
+
+    let mouseX = 0, mouseY = 0;
+
+    window.addEventListener('resize', () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
     });
+
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      trail.push({x: mouseX, y: mouseY, alpha: 1});
+      if (trail.length > maxTrail) trail.shift();
+    });
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      for (let i = 0; i < trail.length - 1; i++) {
+        const p1 = trail[i];
+        const p2 = trail[i + 1];
+        const grad = ctx.createLinearGradient(p1.x, p1.y, p2.x, p2.y);
+        grad.addColorStop(0, `rgba(120,120,255,${p1.alpha})`);
+        grad.addColorStop(1, `rgba(100,100,255,${p2.alpha})`);
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 6;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.stroke();
+        p1.alpha -= 0.02;
+      }
+      requestAnimationFrame(animate);
+    }
+
+    animate();
   </script>
 </body>
 </html>
