@@ -14,6 +14,10 @@
       overflow-x: hidden;
       position: relative;
     }
+    header, section, footer {
+      position: relative;
+      z-index: 10;
+    }
     header {
       height: 100vh;
       display: flex;
@@ -22,9 +26,7 @@
       justify-content: center;
       text-align: center;
       background: linear-gradient(120deg, #ffffff, #f2f4f7);
-      position: relative;
       overflow: hidden;
-      z-index: 10;
     }
     header h1 {
       font-size: 3rem;
@@ -41,8 +43,6 @@
       padding: 5rem 10%;
       max-width: 1200px;
       margin: auto;
-      position: relative;
-      z-index: 10;
     }
     .two-col {
       display: flex;
@@ -84,8 +84,6 @@
       background: #f4f5f7;
       color: #666;
       font-size: 0.9rem;
-      position: relative;
-      z-index: 10;
     }
 
     canvas#trailCanvas {
@@ -95,7 +93,7 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      z-index: 1; /* Behind all content */
+      z-index: 0; /* Ensures it stays behind all content */
     }
 
     @keyframes fadeIn {
@@ -170,7 +168,7 @@
     canvas.height = height;
 
     const trail = [];
-    let maxTrail = 20;
+    let maxTrail = 50; // more points for smoother motion
     let mouseX = 0, mouseY = 0;
     let lastX = 0, lastY = 0;
     let speed = 0;
@@ -191,11 +189,13 @@
       lastX = mouseX;
       lastY = mouseY;
 
-      maxTrail = Math.min(40, 10 + speed / 2);
-      const alphaDecay = 0.05 + speed / 300;
+      maxTrail = Math.min(60, 15 + speed * 0.7);
+      const alphaDecay = 0.03 + speed / 600;
 
-      trail.push({x: mouseX, y: mouseY, alpha: 1, decay: alphaDecay});
-      if (trail.length > maxTrail) trail.shift();
+      for (let i = 0; i < 2; i++) { // emit more particles for smoother flow
+        trail.push({x: mouseX, y: mouseY, alpha: 1, decay: alphaDecay});
+      }
+      if (trail.length > maxTrail) trail.splice(0, trail.length - maxTrail);
     });
 
     function animate() {
