@@ -171,7 +171,7 @@
 
     /* submit.page here */
 
-    .submit-grid {
+.submit-grid {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -188,16 +188,11 @@
   padding: 3rem;
   max-width: 600px;
   width: 100%;
-  transition: transform 0.3s ease;
-}
-
-.submit-grid form:hover {
-  transform: translateY(-4px);
 }
 
 .submit-grid label {
   display: block;
-  font-family: "Inter", sans-serif;
+  font-family: "Jersey 10", sans-serif;
   font-weight: 600;
   font-size: 1rem;
   margin-bottom: 0.4rem;
@@ -231,12 +226,29 @@
   border: none;
   cursor: pointer;
   font-weight: 600;
-  transition: background 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .submit-grid input[type="submit"]:hover {
-  background: #6675ff;
+  transform: translateY(-3px);
 }
 
+.ty-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, #fafafa 0%, #f3f3f3 100%);
+}
 
+.ty-grid div {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  padding: 3rem;
+  max-width: 600px;
+  width: 100%;
+}
     

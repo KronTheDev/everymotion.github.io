@@ -51,38 +51,48 @@ if (!detectMob()) {
 const adaptiveYou = document.getElementById('adaptiveYou');
 const fonts = ["Inter", "Playfair Display", "Orbitron", "Pacifico", "Courier Prime"];
 let fontIndex = 0;
-let typing = false;
 
 function typeEffect(text, font) {
-    adaptiveYou.style.fontFamily = font;
-    adaptiveYou.textContent = '';
-    let i = 0;
-    typing = true;
+  adaptiveYou.style.fontFamily = font;
+  adaptiveYou.textContent = "";
+  let i = 0;
+  return new Promise(resolve => {
     const interval = setInterval(() => {
-    adaptiveYou.textContent += text[i];
-    i++;
-    if (i >= text.length) {
+      adaptiveYou.textContent += text[i];
+      i++;
+      if (i >= text.length) {
         clearInterval(interval);
-        typing = false;
-    }
-    }, 190);
+        resolve();
+      }
+    }, 100);
+  });
 }
 
 function eraseEffect() {
-    const text = adaptiveYou.textContent;
-    let i = text.length;
+  return new Promise(resolve => {
     const interval = setInterval(() => {
-    adaptiveYou.textContent = text.substring(0, i);
-    i--;
-    if (i < 0) {
+      adaptiveYou.textContent = adaptiveYou.textContent.slice(0, -1);
+      if (adaptiveYou.textContent.length === 0) {
         clearInterval(interval);
-        fontIndex = (fontIndex + 1) % fonts.length;
-        setTimeout(() => typeEffect('YOU', fonts[fontIndex]), 100);
-    }
-    }, 115);
+        resolve();
+      }
+    }, 60);
+  });
 }
 
-typeEffect('YOU', fonts[0]);
-setInterval(() => {
-    if (!typing) eraseEffect();
-}, 2200);
+async function loopTyping() {
+  while (true) {
+    const font = fonts[fontIndex];
+    fontIndex = (fontIndex + 1) % fonts.length;
+    await typeEffect("YOU", font);
+    await new Promise(r => setTimeout(r, 1000));
+    await eraseEffect();
+    await new Promise(r => setTimeout(r, 200));
+  }
+}
+
+// Stop overlapping on reload
+if (adaptiveYou) {
+  window.addEventListener("beforeunload", () => clearInterval());
+  loopTyping();
+}
