@@ -264,12 +264,14 @@
       requestAnimationFrame(animateTrail);
     }
     if (isMobile){
-      m_test = true;
+      animateTrail();
     }
 
+    /*
     if (!m_test) {
       animateTrail();
     }
+    */
 
     // Adaptive YOU typing animation
     const adaptiveYou = document.getElementById('adaptiveYou');
