@@ -169,6 +169,7 @@
     .submit-grid div {
       flex: 1;
       min-width: 45vw;
+      padding: 2rem;
     }
 
     .submit-grid div input {
