@@ -163,7 +163,7 @@
     .submit-grid div {
       flex: 1;
       min-width: 300px;
-      min-height: 150px;
+      min-height: 10vh;
     }
 
     .submit-grid div input {
