@@ -161,16 +161,16 @@
       flex-wrap: wrap;
       gap: 2rem;
       align-items: bottom;
-      max-height: 100vh;
+      max-height: 85vh;
     }
 
     .submit-grid div {
       flex: 1;
-      min-width: 300px;
+      min-width: 45vw;
     }
 
     .submit-grid div input {
-        min-width: 250px;
+        min-width: 40vw;
         padding:1rem 2rem;
         border:2px solid #333;
         background:white;
