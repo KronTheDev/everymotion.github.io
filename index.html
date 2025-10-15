@@ -73,8 +73,17 @@
       gap: 2rem;
       margin-top: 3rem;
     }
+
+    .dev {
+      background: #efeeee90;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
     .feature {
-      background: #efeeee;
+      background: #f7f7f7;
       padding: 2rem;
       border-radius: 12px;
       box-shadow: 0 3px 8px rgba(0,0,0,0.2);
@@ -109,7 +118,7 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      z-index: -1;
+      z-index: 0;
     }
 
     @keyframes fadeIn {
@@ -163,13 +172,15 @@
   </section>
 
   <section id="developer">
-    <h2>For Developers</h2>
-    <p>Build the future with us — open SDK access for creators and researchers who dare to shape the next generation of digital interaction.</p>
-    <div style="margin-top:2rem;">
-      <a href="https://github.com/KronTheDev/everymotion.github.io">
-        <button class="button_a" style="box-shadow:0.5rem 1rem black;padding:1rem 2rem; border:none; background:#333; color:#fff; border-radius:8px; cursor:pointer; margin-right:1rem;">Request Early Access</button>
-      </a>
-      <button class="button_a" style="box-shadow:0.5rem 1rem gray;padding:1rem 2rem; border:1px solid #333; background:transparent; color:#333; border-radius:8px; cursor:pointer;">View Documentation</button>
+    <div class="dev"></div>
+      <h2>For Developers</h2>
+      <p>Build the future with us — open SDK access for creators and researchers who dare to shape the next generation of digital interaction.</p>
+      <div style="margin-top:2rem;">
+        <a href="https://github.com/KronTheDev/everymotion.github.io">
+          <button class="button_a" style="box-shadow:0.5rem 1rem black;padding:1rem 2rem; border:none; background:#333; color:#fff; border-radius:8px; cursor:pointer; margin-right:1rem;">Request Early Access</button>
+        </a>
+        <button class="button_a" style="box-shadow:0.5rem 1rem gray;padding:1rem 2rem; border:1px solid #333; background:transparent; color:#333; border-radius:8px; cursor:pointer;">View Documentation</button>
+      </div>
     </div>
   </section>
 
