@@ -232,7 +232,7 @@
   <script>
     // Trail animation
     const isMobile = navigator.userAgentData.mobile;
-    let m_test = false;
+    m_test = false;
     const canvas = document.getElementById('trailCanvas');
     const ctx = canvas.getContext('2d');
     let width = window.innerWidth, height = window.innerHeight;
@@ -263,15 +263,14 @@
       }
       requestAnimationFrame(animateTrail);
     }
+
     if (isMobile){
-      animateTrail();
+      m_test=true;
     }
 
-    /*
     if (!m_test) {
       animateTrail();
     }
-    */
 
     // Adaptive YOU typing animation
     const adaptiveYou = document.getElementById('adaptiveYou');
