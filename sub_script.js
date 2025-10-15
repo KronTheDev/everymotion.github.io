@@ -4,14 +4,19 @@ document.addEventListener("DOMContentLoaded", () => {
     "adaptiveCN", "adaptiveCP", "adaptiveCO", "adaptiveSU"
   ];
 
-  const delayBetween = 500;
-  const typingSpeed = 10;
+  const delayBetween = 500; // ms between titles
+  const typingSpeed = 60;   // ms per letter
 
-  ids.forEach(id => {
+  // Store original text first, before clearing
+  const elements = ids.map(id => {
     const el = document.getElementById(id);
-    if (el) el.textContent = "";
-  });
+    if (!el) return null;
+    const originalText = el.textContent.trim();
+    el.textContent = ""; // clear text
+    return { el, text: originalText };
+  }).filter(Boolean); // remove nulls
 
+  // Typing effect for one element
   function typeText(el, text, callback) {
     let i = 0;
     const interval = setInterval(() => {
@@ -24,19 +29,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }, typingSpeed);
   }
 
+  // Recursive sequence typing
   function startTypingSequence(index = 0) {
-    if (index >= ids.length) return;
-    const el = document.getElementById(ids[index]);
-    if (!el) return;
-    const text = el.getAttribute("data-text") || el.dataset.text || el.dataset.original || el.getAttribute("original-text") || el.getAttribute("title-text") || el.getAttribute("data-typed") || el.getAttribute("data-value") || el.innerHTML || "";
-    typeText(el, text.trim(), () => startTypingSequence(index + 1));
+    if (index >= elements.length) return;
+    const { el, text } = elements[index];
+    typeText(el, text, () => startTypingSequence(index + 1));
   }
-
-  // Before starting, store original text
-  ids.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.dataset.text = el.textContent.trim();
-  });
 
   startTypingSequence();
 });

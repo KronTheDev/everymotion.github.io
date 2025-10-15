@@ -199,6 +199,16 @@
   color: #333;
 }
 
+.submit-grid h1 {
+  display: block;
+  align-items: center;
+  font-family: "Jersey 10", sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+  color: #191919;
+}
+
 .submit-grid input,
 .submit-grid select,
 .submit-grid textarea {
@@ -252,6 +262,7 @@
   padding: 3rem;
   max-width: 600px;
   width: 100%;
+  text-align: center;
 }
 
 .ty-grid div h1 {
