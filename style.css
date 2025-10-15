@@ -201,9 +201,10 @@
 
 .submit-grid h1 {
   display: block;
-  text-align: center;
+  align-self: center;
   font-family: "Jersey 10", sans-serif;
   font-weight: 600;
+  font-size: 2.5rem;
   margin-bottom: 1rem;
   color: #191919;
 }

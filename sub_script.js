@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "adaptiveCN", "adaptiveCP", "adaptiveCO", "adaptiveSU"
   ];
 
-  const delayBetween = 500; // ms between titles
+  const delayBetween = 200; // ms between titles
   const typingSpeed = 60;   // ms per letter
 
   // Store original text first, before clearing
