@@ -36,4 +36,4 @@ if (!typed) {
     typed = true;
 }
 */    
-typeEffect()
+// typeEffect()
