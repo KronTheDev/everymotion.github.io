@@ -74,7 +74,14 @@
     }
 
     .dev {
-      background: #efeeee;
+      background: linear-gradient(
+        to bottom,
+        #efeeee00,
+        #efeeee83,
+        #efeeee,
+        #efeeee,
+        #efeeee,
+      );
       padding: 2rem;
       border-radius: 12px;
       box-shadow: 0 3px 8px rgba(0,0,0,0.2);
@@ -88,7 +95,9 @@
       box-shadow: 0 3px 8px rgba(0,0,0,0.2);
       transition: transform 0.3s ease;
     }
+
     .feature:hover {transform: translateY(-5px);}
+
     .vision {
       text-align: center;
       font-size: 1.5rem;
@@ -136,6 +145,7 @@
     .button_a {
       transition: transform 0.3s ease;
     }
+
     .button_a:hover {transform: translateY(-3px);}
 
     canvas#trailCanvas {
