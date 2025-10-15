@@ -169,6 +169,126 @@
       to {opacity: 1; transform: translateY(0);}
     }
 
+    /* TOP BAR here */
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+.nav-content {
+  width: 90%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  height: 40px;
+  width: auto;
+}
+
+.brand {
+  font-family: 'Orbitron', sans-serif; /* same futuristic font */
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #000;
+  letter-spacing: 2px;
+}
+
+/* PERS. CAROUSEL */
+
+.personnel-section {
+  position: relative;
+  background: #000;
+  color: #fff;
+  padding: 6rem 10%;
+  text-align: center;
+  transition: background 1s ease-in-out;
+}
+
+.personnel-section::before,
+.personnel-section::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.personnel-section::before {
+  top: -100px;
+  background: linear-gradient(to bottom, rgba(255,255,255,1), rgba(255,255,255,0));
+}
+.personnel-section::after {
+  bottom: -100px;
+  background: linear-gradient(to top, rgba(255,255,255,1), rgba(255,255,255,0));
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.member {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 400px;
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.6s ease;
+}
+
+.member.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.member img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  border: 2px solid white;
+}
+
+.controls {
+  margin-top: 2rem;
+}
+
+.controls button {
+  background: none;
+  color: white;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin: 0 10px;
+  transition: background 0.3s;
+}
+.controls button:hover {
+  background: white;
+  color: black;
+}
+
     /* submit.page here */
 
 .submit-grid {
