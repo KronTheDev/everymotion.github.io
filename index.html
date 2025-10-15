@@ -192,16 +192,16 @@
       const dx = mouseX - lastX, dy = mouseY - lastY; speed = Math.sqrt(dx*dx + dy*dy);
       lastX = mouseX; lastY = mouseY;
       maxTrail = Math.min(60, 15 + speed * 0.7);
-      const alphaDecay = 0.03 + speed / 600;
+      const alphaDecay = 0.1 + speed / 600;
       for (let i = 0; i < 2; i++) trail.push({x: mouseX, y: mouseY, alpha: 1, decay: alphaDecay});
       if (trail.length > maxTrail) trail.splice(0, trail.length - maxTrail);
     });
 
     function animateTrail() {
       ctx.clearRect(0, 0, width, height);
-      ctx.lineWidth = 10;
+      ctx.lineWidth = 35;
       ctx.lineCap = 'round';
-      ctx.lineJoin = 'round';
+      ctx.lineJoin = 'square';
       for (let i = 0; i < trail.length - 1; i++) {
         const p1 = trail[i]; const p2 = trail[i + 1];
         ctx.strokeStyle = `rgba(100,100,255,${p1.alpha})`;
