@@ -241,7 +241,7 @@
           clearInterval(interval);
           typing = false;
         }
-      }, 200);
+      }, 190);
     }
 
     function eraseEffect() {
@@ -255,13 +255,13 @@
           fontIndex = (fontIndex + 1) % fonts.length;
           setTimeout(() => typeEffect('YOU', fonts[fontIndex]), 100);
         }
-      }, 125);
+      }, 115);
     }
 
     typeEffect('YOU', fonts[0]);
     setInterval(() => {
       if (!typing) eraseEffect();
-    }, 2250);
+    }, 2200);
   </script>
 </body>
 </html>
