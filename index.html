@@ -226,13 +226,13 @@
 
   <footer>
     <p>© 2025 EveryMotion. All rights reserved.</p>
-    <p>Connect with us: contact@everymotion.io</p>
+    <p>Connect with us: contact@every-motion.com</p>
   </footer>
 
   <script>
     // Trail animation
     const isMobile = navigator.userAgentData.mobile;
-    m_test = false;
+    const m_test = isMobile;
     const canvas = document.getElementById('trailCanvas');
     const ctx = canvas.getContext('2d');
     let width = window.innerWidth, height = window.innerHeight;
@@ -262,10 +262,6 @@
         p1.alpha -= p1.decay;
       }
       requestAnimationFrame(animateTrail);
-    }
-
-    if (isMobile){
-      m_test=true;
     }
 
     if (!m_test) {
