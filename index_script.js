@@ -37,7 +37,7 @@ function animateTrail() {
     ctx.lineJoin = 'square';
     for (let i = 0; i < trail.length - 1; i++) {
     const p1 = trail[i]; const p2 = trail[i + 1];
-    ctx.strokeStyle = `rgba(100,100,255,${p1.alpha})`;
+    ctx.strokeStyle = `rgba(100,100,255,${p1.alpha}-0.2)`;
     ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y); ctx.stroke();
     p1.alpha -= p1.decay;
     }
