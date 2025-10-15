@@ -181,5 +181,5 @@
     }
 
     .submit-grid div label {
-        text-align: left;
+        align-self: left;
     }
