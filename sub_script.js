@@ -34,5 +34,6 @@ if (!typed) {
     }
     typed = true;
 }
-
+/*
 setInterval(typeEffect(), 200);
+*/
