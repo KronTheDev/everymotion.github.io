@@ -158,18 +158,23 @@
       flex-wrap: wrap;
       gap: 2rem;
       align-items: bottom;
+      height: 100vh;
     }
 
     .submit-grid div {
       flex: 1;
       min-width: 300px;
-      min-height: 10vh;
     }
 
     .submit-grid div input {
+        min-width: 250px;
         padding:1rem 2rem;
         border:2px solid #333;
         background:white;
         color:#333;
         border-radius:5px;
+    }
+
+    .submit-grid div label {
+        text-align: left;
     }
