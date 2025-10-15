@@ -1,4 +1,3 @@
-// Trail animation
 function detectMob() {
     const toMatch = [
         /Android/i,
@@ -49,7 +48,6 @@ if (!detectMob()) {
     animateTrail();
 }
 
-// Adaptive YOU typing animation
 const adaptiveYou = document.getElementById('adaptiveYou');
 const fonts = ["Inter", "Playfair Display", "Orbitron", "Pacifico", "Courier Prime"];
 let fontIndex = 0;

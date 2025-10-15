@@ -17,6 +17,7 @@ function typeEffect() {
         index++;
         subject.style.fontFamily = "Pacifico";
         let i = 0;
+        subject.textContent = '';
         const interval = setInterval(() => {
         subject.textContent += text[i];
         i++;
@@ -27,13 +28,12 @@ function typeEffect() {
         }, 90);
     }
 }
-
+/*
 if (!typed) {
     for(let i = 0; i < con_adaptive.length; i++) {
         con_adaptive[i].textContent = '';
     }
     typed = true;
 }
-/*
+*/    
 setInterval(typeEffect(), 200);
-*/
