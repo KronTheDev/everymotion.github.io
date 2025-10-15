@@ -179,6 +179,7 @@
       flex: 1;
       min-width: 45vw;
       padding: 2rem;
+      font-family: "Jersey 10", sans-serif;
     }
 
     .submit-grid div input {
