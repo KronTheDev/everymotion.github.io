@@ -61,12 +61,6 @@
       gap: 2rem;
       align-items: center;
     }
-    .img-caption {
-      text-align: right;
-      color: gray;
-      font-size: 1rem;
-      background: transparent;
-    }
 
     .two-col div {
       flex: 1;
@@ -79,6 +73,11 @@
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
       margin-top: 3rem;
+    }
+
+    .white {
+      background: #ffffff;
+      padding: 2rem;
     }
 
     .dev {
@@ -112,6 +111,28 @@
       padding: 6rem 10%;
       font-style: italic;
     }
+
+    .image-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .image-container img {
+      width: 100%;
+      border-radius: 12px;
+    } 
+
+    .image-container .caption {
+      position: absolute;
+      bottom: 10px;
+      right: 15px;
+      background: transparent;
+      color: gray;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 1rem;
+   }
+
     footer {
       text-align: center;
       padding: 3rem 10%;
@@ -156,14 +177,11 @@
       <h2>About EveryMotion</h2>
       <p>EveryMotion removes the barriers between you and your virtual world. No sensors. No controllers. Just movement — as it’s meant to be. Our technology learns, adapts, and evolves with every gesture you make, bringing a level of freedom that redefines immersion.</p>
     </div>
-    <div>
+    <div class="image-container">
       <img src="https://live.staticflickr.com/8098/8547142228_b76961be9b_z.jpg" alt="Person in Motion" style="box-shadow: -1rem -2rem #7070703b;width:100%; border-radius:12px;">
+      <span class="caption">motion By Alan Kinsella ⤴</span>
     </div>
   </section>
-
-  <div class="img-caption">
-    motion By Alan Kinsella ⤴
-  </div>
 
   <section id="technology">
     <h2>Technology</h2>
