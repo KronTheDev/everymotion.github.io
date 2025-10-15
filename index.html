@@ -260,18 +260,8 @@
       }
       requestAnimationFrame(animateTrail);
     }
-    if (!isMobile == false) {
+    if (!isMobile) {
       animateTrail();
-    }
-
-    function disableTest(){
-
-      document.getElementById("test").disabled = true;
-      var nodes = document.getElementById("test").getElementsByTagName('*');
-      for(var i = 0; i < nodes.length; i++){
-          nodes[i].disabled = true;
-      }
-
     }
 
     // Adaptive YOU typing animation
