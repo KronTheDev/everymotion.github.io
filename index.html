@@ -75,7 +75,7 @@
       margin-top: 3rem;
     }
 
-    .white {
+    .buffer {
       background: #ffffff;
       padding: 2rem;
     }
@@ -207,7 +207,7 @@
     <p><strong>— The EveryMotion Team</strong></p>
   </section>
 
-  <div class="white"></div>
+  <div class="buffer"></div>
 
   <div class="dev">
     <section id="developer">
@@ -229,6 +229,7 @@
 
   <script>
     // Trail animation
+    const isMobile = navigator.userAgentData.mobile;
     const canvas = document.getElementById('trailCanvas');
     const ctx = canvas.getContext('2d');
     let width = window.innerWidth, height = window.innerHeight;
@@ -259,7 +260,19 @@
       }
       requestAnimationFrame(animateTrail);
     }
-    animateTrail();
+    if (!isMobile == false) {
+      animateTrail();
+    }
+
+    function disableTest(){
+
+      document.getElementById("test").disabled = true;
+      var nodes = document.getElementById("test").getElementsByTagName('*');
+      for(var i = 0; i < nodes.length; i++){
+          nodes[i].disabled = true;
+      }
+
+    }
 
     // Adaptive YOU typing animation
     const adaptiveYou = document.getElementById('adaptiveYou');
