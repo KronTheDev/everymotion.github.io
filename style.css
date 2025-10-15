@@ -21,6 +21,18 @@
       background: linear-gradient(bottom, #ffffff, #f7f7f7);
       overflow: hidden;
     }
+
+    header::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top, rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 1) 100%);
+        pointer-events: none;
+    }
+
     header h1 {
       font-size: 3rem;
       font-weight: 700;
