@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EveryMotion | The Motion of the Future</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&family=Playfair+Display:wght@700&family=Orbitron:wght@700&family=Pacifico&family=Courier+Prime:wght@700&display=swap" rel="stylesheet">
-
-  <style src="style.css"></style>
+  <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
@@ -43,7 +42,9 @@
               <label for="subject"><span id="adaptiveSU">Subject</span></label>
               <textarea name="subject" placeholder="Write something.." style="height:200px"></textarea>
 
-              <input type="submit" value="Submit">
+              <input type="submit" value="Submit" style="box-shadow:0.5rem 1rem gray;padding:1rem 2rem; border:1px solid #333; background:white; color:#333; border-radius:8px; cursor:pointer;">
+
+              <input type="hidden" name="_template" value="basic">
 
               <input type="hidden" name="_autoresponse" value="Thank you for your interest in the EveryMotion SDK.
                 Your submission has been received — our team hopes you will enjoy our Alpha SDK.
