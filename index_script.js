@@ -124,10 +124,12 @@ collapsibles.forEach(btn => {
     this.classList.toggle("active");
     const content = this.nextElementSibling;
 
-    if (content.style.maxHeight) {
-      content.style.maxHeight = null;
-    } else {
+    if (this.classList.contains("active")) {
+      // dynamically adjust height based on text
       content.style.maxHeight = content.scrollHeight + "px";
+    } else {
+      content.style.maxHeight = null;
     }
   });
 });
+
