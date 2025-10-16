@@ -47,6 +47,9 @@ function animateTrail() {
 if (!detectMob()) {
     animateTrail();
 }
+else {
+    document.getElementById("personnel").style = "align-items: center;"; 
+}
 
 const adaptiveYou = document.getElementById('adaptiveYou');
 const fonts = ["Inter", "Playfair Display", "Orbitron", "Pacifico", "Courier Prime"];
