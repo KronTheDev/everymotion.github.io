@@ -116,20 +116,99 @@ document.getElementById("prev").addEventListener("click", () => {
   members[current].classList.add("active");
 });
 
+/* ... */
 
-const collapsibles = document.querySelectorAll(".collapsible");
+(function () {
+  const collapsibles = Array.from(document.querySelectorAll('.collapsible'));
 
-collapsibles.forEach(btn => {
-  btn.addEventListener("click", function () {
-    this.classList.toggle("active");
-    const content = this.nextElementSibling;
+  function setContentHeight(content) {
+    content.style.maxHeight = 'none';
+    const targetHeight = content.scrollHeight;
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        content.style.maxHeight = targetHeight + 'px';
+      }, 30);
+    });
+  }
 
-    if (this.classList.contains("active")) {
-      // dynamically adjust height based on text
-      content.style.maxHeight = content.scrollHeight + "px";
+  function collapseContent(content) {
+    content.style.maxHeight = content.scrollHeight + 'px';
+    requestAnimationFrame(() => {
+      content.style.maxHeight = '0';
+    });
+  }
+
+  function attachObservers(content) {
+    if (window.ResizeObserver) {
+      const ro = new ResizeObserver(() => {
+        if (content.previousOpen) setContentHeight(content);
+      });
+      ro.observe(content);
+      content.__ro = ro;
     } else {
-      content.style.maxHeight = null;
+      const mo = new MutationObserver(() => {
+        if (content.previousOpen) setContentHeight(content);
+      });
+      mo.observe(content, { childList: true, subtree: true, characterData: true });
+      content.__mo = mo;
+    }
+  }
+
+  collapsibles.forEach(btn => {
+    const content = btn.nextElementSibling;
+    if (!content) return;
+    content.style.overflow = 'hidden';
+    content.style.maxHeight = '0';
+    content.style.transition = content.style.transition || 'max-height 0.38s ease, padding 0.28s ease';
+    content.previousOpen = false;
+    attachObservers(content);
+
+    btn.addEventListener('click', () => {
+      const isActive = btn.classList.toggle('active');
+      if (isActive) {
+        content.previousOpen = true;
+        btn.classList.add('opening');
+        setContentHeight(content);
+        setTimeout(() => btn.classList.remove('opening'), 450);
+      } else {
+        content.previousOpen = false;
+        collapseContent(content);
+      }
+    });
+  });
+
+  let resizeTO;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTO);
+    resizeTO = setTimeout(() => {
+      collapsibles.forEach(btn => {
+        const content = btn.nextElementSibling;
+        if (!content) return;
+        if (btn.classList.contains('active')) {
+          setContentHeight(content);
+        } else {
+          content.style.maxHeight = '0';
+        }
+      });
+    }, 120);
+  });
+
+  document.querySelectorAll('img').forEach(img => {
+    if (!img.complete) {
+      img.addEventListener('load', () => {
+        collapsibles.forEach(btn => {
+          const content = btn.nextElementSibling;
+          if (btn.classList.contains('active')) setContentHeight(content);
+        });
+      }, { once: true });
     }
   });
-});
+
+  window.addEventListener('load', () => {
+    collapsibles.forEach(btn => {
+      const content = btn.nextElementSibling;
+      if (btn.classList.contains('active')) setContentHeight(content);
+    });
+  });
+})();
 
