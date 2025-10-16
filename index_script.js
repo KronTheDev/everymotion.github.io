@@ -112,3 +112,19 @@ document.getElementById("prev").addEventListener("click", () => {
   current = (current - 1 + members.length) % members.length;
   members[current].classList.add("active");
 });
+
+
+const collapsibles = document.querySelectorAll(".collapsible");
+
+collapsibles.forEach(btn => {
+  btn.addEventListener("click", function () {
+    this.classList.toggle("active");
+    const content = this.nextElementSibling;
+
+    if (content.style.maxHeight) {
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
+})

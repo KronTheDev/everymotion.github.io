@@ -120,12 +120,30 @@
         font-size: 15px;
     }
 
-    .content {
-        padding: 0 18px;
-        display: none;
-        overflow: hidden;
-        background-color: #f1f1f1;
+    .collapsible:hover {
+        background-color: #444;
     }
+
+    .content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out;
+        background-color: #f9f9f9;
+        padding: 0 1rem;
+        border-radius: 8px;
+        margin-top: 0.5rem;
+    }
+
+    .collapsible::after {
+        content: "▼";
+        float: right;
+        transition: transform 0.3s ease;
+    }
+
+    .collapsible.active::after {
+        transform: rotate(-180deg);
+    }
+
 
     .feature {
       background: #f7f7f7;
