@@ -47,6 +47,9 @@ function animateTrail() {
 if (!detectMob()) {
     animateTrail();
 }
+else {
+    document.getElementById('caption').style = "bottom: 5px; right: 20px; color: white;";
+}
 
 const adaptiveYou = document.getElementById('adaptiveYou');
 const fonts = ["Inter", "Playfair Display", "Orbitron", "Pacifico", "Courier Prime"];

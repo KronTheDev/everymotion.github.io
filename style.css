@@ -95,7 +95,7 @@
         pointer-events: none;
     }
 
-    .qna {
+    .faq {
       padding: 2rem 10%;
       border-radius: 12px;
       box-shadow: 0 3px 8px rgba(0,0,0,0.2);
@@ -103,46 +103,50 @@
       background: #efeeee;
       overflow: hidden;
       z-index: 5;
-      pointer-events: none;
     }
 
-    .collapsible {
-        background-color: #eee;
-        color: #444;
-        cursor: pointer;
-        padding: 18px;
-        width: 100%;
-        border-left: 2px solid black;
-        font-family: "Jersey 10", sans-serif;
-        font-size: 2rem;
-        text-align: left;
-        outline: none;
-        font-size: 15px;
-    }
+.collapsible {
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+  padding: 1rem 1.5rem;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  transition: background-color 0.3s ease;
+}
 
-    .collapsible:hover {
-        background-color: #444;
-    }
+.collapsible:hover {
+  background-color: #444;
+}
 
-    .content {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease-out;
-        background-color: #f9f9f9;
-        padding: 0 1rem;
-        border-radius: 8px;
-        margin-top: 0.5rem;
-    }
+.collapsible::after {
+  content: "▼";
+  float: right;
+  transition: transform 0.3s ease;
+}
 
-    .collapsible::after {
-        content: "▼";
-        float: right;
-        transition: transform 0.3s ease;
-    }
+.collapsible.active::after {
+  transform: rotate(-180deg);
+}
 
-    .collapsible.active::after {
-        transform: rotate(-180deg);
-    }
+.content {
+  max-height: 0;
+  overflow: hidden;
+  background-color: #f9f9f9;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+  border-radius: 0 0 8px 8px;
+  padding: 0 1.5rem;
+}
+
+.collapsible.active + .content {
+  padding: 1rem 1.5rem;
+}
+
 
 
     .feature {
@@ -279,15 +283,6 @@
   height: 100px;
   pointer-events: none;
   z-index: 2;
-}
-
-.personnel-section::before {
-  top: -100px;
-  background: linear-gradient(to bottom, rgba(255,255,255,1), rgba(255,255,255,0));
-}
-.personnel-section::after {
-  bottom: -100px;
-  background: linear-gradient(to top, rgba(255,255,255,1), rgba(255,255,255,0));
 }
 
 .carousel {
