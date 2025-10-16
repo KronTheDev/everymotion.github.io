@@ -48,7 +48,7 @@ if (!detectMob()) {
     animateTrail();
 }
 else {
-    document.getElementById('caption').style = "bottom: 5px; right: 20px; color: white;";
+    document.getElementById('caption').style = "bottom: 5px; right: 15px; color: lightgrey;"; 
 }
 
 const adaptiveYou = document.getElementById('adaptiveYou');
