@@ -98,30 +98,53 @@
     .faq {
       padding: 2rem 10%;
       border-radius: 12px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.6);
       position: relative;
       background: #efeeee;
       overflow: hidden;
       z-index: 5;
     }
 
+/* FAQ Section */
+.faq-section {
+  background: linear-gradient(180deg, #fff 0%, #f8f9fb 50%, #fff 100%);
+  padding: 4rem 10%;
+  text-align: center;
+}
+
+.faq-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  color: #222;
+}
+
+.faq-item {
+  margin: 1rem auto;
+  max-width: 800px;
+  width: 100%;
+}
+
+/* Collapsible Buttons */
 .collapsible {
-  background-color: #ffffff;
-  color: white;
-  cursor: pointer;
-  padding: 1rem 1.5rem;
   width: 100%;
   text-align: left;
+  background: white;
+  color: black;
+  cursor: pointer;
+  padding: 1.2rem 1.6rem;
+  font-size: 2rem;
+  border: none;
+  border-left: 3px black;
   outline: none;
-  font-size: 2.6rem;
-  font-family: "Jersey 10", sans-serif;
-  border-left: 2px black;
-  margin-top: 0.5rem;
-  transition: background-color 0.3s ease;
+  font-family: 'Jerser 10', sans-serif;
+  font-weight: 500;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .collapsible:hover {
-  background-color: #444;
+  background: #333;
+  transform: translateY(-2px);
 }
 
 .collapsible::after {
@@ -135,17 +158,41 @@
 }
 
 .content {
+  background: #f9f9fb;
   max-height: 0;
   overflow: hidden;
-  background-color: #f9f9f9;
+  border-radius: 0 0 10px 10px;
   transition: max-height 0.4s ease, padding 0.3s ease;
-  border-radius: 0 0 8px 8px;
+  text-align: left;
   padding: 0 1.5rem;
+  color: #444;
+  line-height: 1.6;
 }
 
 .collapsible.active + .content {
-  padding: 1rem 1.5rem;
+  padding: 1.2rem 1.5rem;
 }
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .faq-section {
+    padding: 3rem 1.5rem;
+  }
+
+  .faq-section h2 {
+    font-size: 2rem;
+  }
+
+  .collapsible {
+    font-size: 1rem;
+    padding: 1rem 1.2rem;
+  }
+
+  .content {
+    font-size: 0.95rem;
+  }
+}
+
 
 
 

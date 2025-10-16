@@ -130,4 +130,4 @@ collapsibles.forEach(btn => {
       content.style.maxHeight = content.scrollHeight + "px";
     }
   });
-})
+});
