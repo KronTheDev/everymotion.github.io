@@ -106,16 +106,16 @@
     }
 
 .collapsible {
-  background-color: #333;
+  background-color: #ffffff;
   color: white;
   cursor: pointer;
   padding: 1rem 1.5rem;
   width: 100%;
-  border: none;
   text-align: left;
   outline: none;
-  font-size: 1.1rem;
-  border-radius: 8px;
+  font-size: 2.6rem;
+  font-family: "Jersey 10", sans-serif;
+  border-left: 2px black;
   margin-top: 0.5rem;
   transition: background-color 0.3s ease;
 }
@@ -135,7 +135,7 @@
 }
 
 .content {
-  max-height: 0;
+  max-height: 15rem;
   overflow: hidden;
   background-color: #f9f9f9;
   transition: max-height 0.4s ease, padding 0.3s ease;
