@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EveryMotion Documentation</title>
+  <link rel="icon" href="wrench.ico" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="docs_style.css">
   <link rel="stylesheet" href="style.css">
@@ -26,11 +27,12 @@
       </div>
     </aside>
 
-    <main class="content" id="docContent">
+    <main class="content" id="docContent" role="main" aria-live="polite">
       <!-- Content Dynamically Loaded Here -->
+       <p class="loading">Loading documentation…</p>
     </main>
   </div>
 
-  <script src="docs_script.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
