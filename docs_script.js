@@ -85,12 +85,3 @@ if (detectMob()) {
     document.getElementById('cprt').type = 'hidden';
     document.getElementById('cprb').type = '';
 }
-
-contentEl.classList.remove("show");
-contentEl.classList.add("fade");
-
-setTimeout(() => {
-  contentEl.innerHTML = module.content;
-  contentEl.classList.remove("fade");
-  contentEl.classList.add("show");
-}, 200);
