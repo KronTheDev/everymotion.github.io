@@ -171,3 +171,23 @@ pre, code {
   font-family: monospace;
   line-height: 1.5;
 }
+
+/* === TEMPORARY VISIBILITY FIX FOR DOCS === */
+#docContent {
+  position: relative !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  min-height: 100vh !important;
+  background: #fff !important;
+  color: #111 !important;
+  z-index: 99 !important;
+  padding: 2rem !important;
+  overflow-y: auto !important;
+  text-align: left !important;
+}
+#docContent * {
+  color: inherit !important;
+  background: transparent !important;
+}
