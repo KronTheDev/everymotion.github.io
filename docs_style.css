@@ -134,13 +134,14 @@ pre, code {
 }
 
 .header-note {
-  font-size: 0.9rem;
-  color: #555;
-  margin-bottom: 1.5rem;
-  background: rgba(54, 54, 255, 0.372) ;
-  padding: 1rem ;
-  font-family: "Inter Bold", sans-serif ;
+  background: rgba(100, 150, 255, 0.15);
+  border-left: 4px solid #1e5bce;
+  padding: 1rem 1.5rem;
+  border-radius: 6px;
+  margin-top: 1rem;
+  color: #111;
 }
+
 
 #docContent {
   position: relative !important;
