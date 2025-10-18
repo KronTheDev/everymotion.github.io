@@ -12,13 +12,11 @@ body {
   color: #1f2a44;
 }
 
-/* Layout */
 .container {
   display: flex;
   width: 100%;
 }
 
-/* Sidebar */
 .sidebar {
   width: 30%;
   max-width: 350px;
