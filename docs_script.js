@@ -1,29 +1,36 @@
-const sidebarItems = document.querySelectorAll('.sidebar li');
-const contentArea = document.getElementById('doc-content');
+const listEl = document.getElementById('docList');
+const items = Array.from(listEl.querySelectorAll('li'));
+const contentEl = document.getElementById('docContent');
+
+console.log("✅ docs_script.js loaded");
 
 async function loadDoc(name) {
+  console.log("Attempting to load:", name);
+  contentEl.innerHTML = `<p class="loading">Loading ${name}…</p>`;
   try {
-    // Dynamically import the JS file containing the `content` constant
-    const module = await import(`./docs_repo/${name}.js`);
-    contentArea.innerHTML = module.content;
-  } catch (error) {
-    console.error("Failed to load documentation:", error);
-    contentArea.innerHTML = "<h1>Error</h1><p>Unable to load this documentation page.</p>";
+    const module = await import(`./docs_repo/${name}.js?t=${Date.now()}`);
+    console.log("Module imported:", module);
+    if (!module || !module.content) {
+      throw new Error("No content export found in " + name);
+    }
+    contentEl.innerHTML = module.content;
+  } catch (err) {
+    console.error("❌ Load error:", err);
+    contentEl.innerHTML = `<p>Error loading <b>${name}</b>: ${err.message}</p>`;
   }
 }
 
-// Add click handlers for sidebar links
-sidebarItems.forEach(item => {
+items.forEach(item => {
   item.addEventListener('click', () => {
-    sidebarItems.forEach(i => i.classList.remove('active'));
-    item.classList.add('active');
-    const docName = item.getAttribute('data-doc');
-    loadDoc(docName);
+    const name = item.dataset.doc;
+    console.log("Clicked:", name);
+    loadDoc(name);
   });
 });
 
-// Load the first page by default
-if (sidebarItems.length > 0) {
-  sidebarItems[0].classList.add('active');
-  loadDoc(sidebarItems[0].getAttribute('data-doc'));
+// auto-load first item
+if (items.length) {
+  const first = items[0].dataset.doc;
+  console.log("Auto-load first doc:", first);
+  loadDoc(first);
 }
