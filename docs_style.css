@@ -26,7 +26,7 @@ body {
   overflow-y: auto;
 }
 
-.sidebar h1 {
+.sidebar h2 {
   color: #1e5bce;
   margin-bottom: 1.5rem;
   font-family: 'Jersey 10', sans-serif;
@@ -42,7 +42,7 @@ body {
   border-right: 3px rgb(43, 173, 216);
   transition: background 0.3s ease, color 0.3s ease;
   font-family: "Jersey 10", sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 .sidebar li:hover {
