@@ -26,9 +26,10 @@ body {
   overflow-y: auto;
 }
 
-.sidebar h2 {
+.sidebar h1 {
   color: #1e5bce;
   margin-bottom: 1.5rem;
+  font-family: 'Jersey 10', sans-serif;
 }
 
 .sidebar ul {
@@ -37,7 +38,6 @@ body {
 
 .sidebar li {
   padding: 0.8rem 1rem;
-  /*margin-bottom: 0.5rem;*/
   cursor: pointer;
   border-right: 3px rgb(43, 173, 216);
   transition: background 0.3s ease, color 0.3s ease;
