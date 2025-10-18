@@ -42,6 +42,7 @@ body {
   border-right: 3px rgb(43, 173, 216);
   transition: background 0.3s ease, color 0.3s ease;
   font-family: "Jersey 10", sans-serif;
+  font-size: 1rem;
 }
 
 .sidebar li:hover {

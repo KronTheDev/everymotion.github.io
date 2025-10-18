@@ -3,8 +3,8 @@ const listItems = document.querySelectorAll('#docList li');
 
 function loadDoc(docName) {
   let doc_repo = import("/docs_repo/"+docName+".js");
-  let content = doc_repo.content
-  content.innerHTML = content;
+  let con = doc_repo.content
+  content.innerHTML = con;
   listItems.forEach(li => li.classList.remove('active'));
   document.querySelector(`[data-doc="${docName}"]`).classList.add('active');
 }
