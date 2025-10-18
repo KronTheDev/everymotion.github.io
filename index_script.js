@@ -48,7 +48,7 @@ if (!detectMob()) {
     animateTrail();
 }
 else {
-    document.getElementById('caption').style = "bottom: 5px; right: 15px; color: lightgrey;"; 
+    document.getElementById('caption').style = "bottom: 5px; right: 15px; color: white;content: '‘motion’ By Alan Kinsella';";
 }
 
 const adaptiveYou = document.getElementById('adaptiveYou');
