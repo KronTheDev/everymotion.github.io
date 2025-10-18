@@ -297,3 +297,10 @@ pre, code {
     padding: 2rem 1rem;
   }
 }
+
+.header-note {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+  background: rgba(54, 54, 255, 0.372);
+}
