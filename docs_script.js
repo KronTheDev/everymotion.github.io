@@ -65,6 +65,7 @@ if (initialItem) {
   loadDoc(initialItem.dataset.doc);
 }
 
+/*
 function detectMob() {
     const toMatch = [
         /Android/i,
@@ -85,3 +86,4 @@ if (detectMob()) {
     document.getElementById('cprt').type = 'hidden';
     document.getElementById('cprb').type = '';
 }
+    */
