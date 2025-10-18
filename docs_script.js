@@ -8,7 +8,6 @@ function setActive(item) {
 }
 
 async function loadDoc(name) {
-  contentEl.innerHTML = `<p class="loading">Loading ${name}…</p>`;
   try {
     // cache-busting param ensures updated file is fetched during development
     const module = await import(`./docs_repo/${name}.js?t=${Date.now()}`);
@@ -82,8 +81,8 @@ function detectMob() {
 }
 
 if (detectMob()) {
-    document.getElementById('cprt').type = 'hidden';
-    document.getElementById('cprb').type = '';
+    document.getElementById('cprt').style.display = 'none';
+    document.getElementById('cprb').style.display = 'block';
 }
 
 contentEl.classList.remove("show");
