@@ -135,7 +135,7 @@ pre, code {
 }
 
 .header-note {
-  background: rgba(100, 150, 255, 1);
+  background: rgba(100, 150, 255, 1) !important;
   border-left: 4px solid #1e5bce;
   padding: 1rem 1.5rem;
   border-radius: 6px;
