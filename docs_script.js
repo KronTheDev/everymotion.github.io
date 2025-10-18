@@ -82,7 +82,7 @@ function detectMob() {
 
 if (detectMob()) {
     document.getElementById('cprt').style.display = 'none';
-    document.getElementById('cprb').style.display = 'block';
+    document.getElementById('cprb').style.display = 'initial';
 }
 
 contentEl.classList.remove("show");
