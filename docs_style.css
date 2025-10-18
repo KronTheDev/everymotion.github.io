@@ -122,3 +122,52 @@ body {
     padding: 2rem 1.5rem;
   }
 }
+
+.container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 30%;
+  max-width: 360px;
+  background: #f5f7fa;
+  border-right: 2px solid #d2e3fa;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+  z-index: 2;
+}
+
+.content {
+  width: 70%;
+  padding: 3rem;
+  overflow-y: auto;
+  background: #fff;
+  z-index: 1;
+  color: #222;
+}
+
+.content h1, .content h2, .content h3 {
+  color: #1e5bce;
+  margin-top: 1.5rem;
+}
+
+.loading {
+  font-style: italic;
+  color: #777;
+}
+
+pre, code {
+  background: #f0f3fa;
+  color: #222;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  display: block;
+  overflow-x: auto;
+  font-family: monospace;
+  line-height: 1.5;
+}
