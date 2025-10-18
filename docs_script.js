@@ -1,29 +1,66 @@
-const sidebarItems = document.querySelectorAll('.sidebar li');
-const contentArea = document.getElementById('doc-content');
+const listEl = document.getElementById('docList');
+const items = Array.from(listEl.querySelectorAll('li'));
+const contentEl = document.getElementById('docContent');
+
+function setActive(item) {
+  items.forEach(i => i.classList.remove('active'));
+  item.classList.add('active');
+}
 
 async function loadDoc(name) {
+  contentEl.innerHTML = `<p class="loading">Loading ${name}…</p>`;
   try {
-    // Dynamically import the JS file containing the `content` constant
-    const module = await import(`./docs_repo/${name}.js`);
-    contentArea.innerHTML = module.content;
-  } catch (error) {
-    console.error("Failed to load documentation:", error);
-    contentArea.innerHTML = "<h1>Error</h1><p>Unable to load this documentation page.</p>";
+    // cache-busting param ensures updated file is fetched during development
+    const module = await import(`./docs_repo/${name}.js?t=${Date.now()}`);
+    if (!module || !module.content) throw new Error('Doc file did not export `content`');
+    contentEl.innerHTML = module.content;
+    // optional: run any inline scripts present in content
+    runInlineScripts(contentEl);
+  } catch (err) {
+    console.error(err);
+    contentEl.innerHTML = `
+      <h1>Error</h1>
+      <p>Failed to load documentation: <strong>${name}</strong></p>
+      <pre>${err.message}</pre>
+    `;
   }
 }
 
-// Add click handlers for sidebar links
-sidebarItems.forEach(item => {
-  item.addEventListener('click', () => {
-    sidebarItems.forEach(i => i.classList.remove('active'));
-    item.classList.add('active');
-    const docName = item.getAttribute('data-doc');
-    loadDoc(docName);
+function runInlineScripts(container) {
+  // If you later inject <script type="module"> inside content, this will eval only non-module scripts.
+  // We'll find script nodes and safely execute them (if they are plain scripts).
+  const scripts = container.querySelectorAll('script:not([type="module"])');
+  scripts.forEach(old => {
+    const s = document.createElement('script');
+    if (old.src) s.src = old.src;
+    else s.textContent = old.textContent;
+    // copy attributes except type
+    for (const attr of old.attributes) if (attr.name !== 'type') s.setAttribute(attr.name, attr.value);
+    old.parentNode.replaceChild(s, old);
+  });
+}
+
+// wire clicks
+items.forEach(item => {
+  item.addEventListener('click', e => {
+    const name = item.dataset.doc;
+    if (!name) return;
+    setActive(item);
+    loadDoc(name);
+    // keep focus visible and accessible
+    item.focus();
+    // save last open doc
+    try { localStorage.setItem('everymotion.lastDoc', name); } catch {}
   });
 });
 
-// Load the first page by default
-if (sidebarItems.length > 0) {
-  sidebarItems[0].classList.add('active');
-  loadDoc(sidebarItems[0].getAttribute('data-doc'));
+// load last doc or default
+const last = (() => {
+  try { return localStorage.getItem('everymotion.lastDoc'); } catch { return null; }
+})();
+const initial = last || items[0].dataset.doc;
+const initialItem = items.find(i => i.dataset.doc === initial) || items[0];
+if (initialItem) {
+  setActive(initialItem);
+  loadDoc(initialItem.dataset.doc);
 }
