@@ -37,10 +37,11 @@ body {
 
 .sidebar li {
   padding: 0.8rem 1rem;
-  margin-bottom: 0.5rem;
+  /*margin-bottom: 0.5rem;*/
   cursor: pointer;
-  border-radius: 8px;
+  border-right: 3px rgb(43, 173, 216);
   transition: background 0.3s ease, color 0.3s ease;
+  font-family: "Jersey 10", sans-serif;
 }
 
 .sidebar li:hover {
@@ -64,6 +65,7 @@ body {
   color: #1e5bce;
   margin-bottom: 1rem;
   font-size: 2rem;
+  font-family: "Jersey 10", sans-serif;
 }
 
 .content pre {
@@ -76,4 +78,46 @@ body {
 .content code {
   color: #0b3d91;
   font-family: 'Courier New', monospace;
+}
+
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    max-width: none;
+    border-right: none;
+    border-bottom: 2px solid #d2e3fa;
+    padding: 1rem 1.5rem;
+  }
+
+  .sidebar h2 {
+    display: none;
+  }
+
+  .sidebar ul {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 0.5rem;
+  }
+
+  .sidebar li {
+    display: inline-block;
+    margin-right: 1rem;
+    background: #eaf1fb;
+    padding: 0.6rem 1.2rem;
+  }
+
+  .sidebar li.active {
+    background: #1e5bce;
+    color: #fff;
+  }
+
+  .content {
+    width: 100%;
+    padding: 2rem 1.5rem;
+  }
 }
