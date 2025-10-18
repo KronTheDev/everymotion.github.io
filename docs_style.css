@@ -76,6 +76,11 @@
   color: #1e5bce;
   margin-top: 1.5rem;
 }
+
+.content h1 {
+  font-family: "Jersey 10", sans-serif;
+}
+
 .content p {
   line-height: 1.7;
   margin: 1rem 0;
@@ -133,6 +138,8 @@ pre, code {
   color: #555;
   margin-bottom: 1.5rem;
   background: rgba(54, 54, 255, 0.372);
+  z-index: 20 !important;
+  padding: 1rem;
 }
 
 #docContent {
@@ -144,7 +151,7 @@ pre, code {
   min-height: 100vh !important;
   background: #fff !important;
   color: #111 !important;
-  z-index: 99 !important;
+  z-index: 10 !important;
   padding: 2rem !important;
   overflow-y: auto !important;
   text-align: left !important;
