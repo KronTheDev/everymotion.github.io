@@ -9,12 +9,21 @@ function setActive(item) {
 
 async function loadDoc(name) {
   try {
-    // cache-busting param ensures updated file is fetched during development
     const module = await import(`./docs_repo/${name}.js?t=${Date.now()}`);
     if (!module || !module.content) throw new Error('Doc file did not export `content`');
-    contentEl.innerHTML = module.content;
-    // optional: run any inline scripts present in content
-    runInlineScripts(contentEl);
+
+    // --- Fade animation sequence ---
+    contentEl.classList.remove("show");
+    contentEl.classList.add("fade");
+
+    setTimeout(() => {
+      contentEl.innerHTML = module.content;
+      runInlineScripts(contentEl);
+      contentEl.classList.remove("fade");
+      contentEl.classList.add("show");
+    }, 200);
+    // -------------------------------
+
   } catch (err) {
     console.error(err);
     contentEl.innerHTML = `
@@ -24,6 +33,7 @@ async function loadDoc(name) {
     `;
   }
 }
+
 
 function runInlineScripts(container) {
   // If you later inject <script type="module"> inside content, this will eval only non-module scripts.
@@ -84,12 +94,3 @@ if (detectMob()) {
     document.getElementById('cprt').style.display = 'none';
     document.getElementById('cprb').style.display = 'initial';
 }
-
-contentEl.classList.remove("show");
-contentEl.classList.add("fade");
-
-setTimeout(() => {
-  contentEl.innerHTML = module.content;
-  contentEl.classList.remove("fade");
-  contentEl.classList.add("show");
-}, 200);
