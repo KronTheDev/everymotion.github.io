@@ -134,12 +134,16 @@ pre, code {
 }
 
 .header-note {
-  background: rgba(100, 150, 255, 0.15);
+  background: rgba(100, 150, 255, 1);
   border-left: 4px solid #1e5bce;
   padding: 1rem 1.5rem;
   border-radius: 6px;
   margin-top: 1rem;
   color: #111;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: italic;
 }
 
 
