@@ -76,7 +76,6 @@
 
     .dev {
       padding: 2rem 10%;
-      border-radius: 12px;
       box-shadow: 0 3px 8px rgba(0,0,0,0.2);
       position: relative;
       background: linear-gradient(to top, #efeeee 0%, #efeeee00 100%);
