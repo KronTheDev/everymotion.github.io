@@ -44,6 +44,14 @@ function animateTrail() {
     requestAnimationFrame(animateTrail);
 }
 
+function toggleTrail() {
+    if (canvas.style.display === 'none') {
+        canvas.style.display = 'initial';
+    } else {
+        canvas.style.display = 'none';
+    }
+}
+
 if (!detectMob()) {
     animateTrail();
 }
