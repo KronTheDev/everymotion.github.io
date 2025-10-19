@@ -522,10 +522,10 @@
   width: 40px;
   height: 40px;
   border-radius: 10px;
-  background: rgba(237, 237, 237, 0.95);
+  background: rgba(224, 224, 224, 0.95);
   color: #fff;
   border: none;
-  box-shadow: 0 4px 14px rgba(30,91,206,0.22);
+  box-shadow: 0 4px 14px rgba(18, 55, 123, 0.6);
   cursor: pointer;
   display: grid;
   place-items: center;
