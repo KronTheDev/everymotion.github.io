@@ -203,17 +203,6 @@
       font-style: italic;
     }
 
-    .vrv {
-      background: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 1) 15%,
-        rgba(255, 255, 255, 1) 100%
-      );
-      width: 100%;
-      z-index: 1000;
-    }
-
     .image-container {
       position: relative;
       display: inline-block;
@@ -278,6 +267,17 @@
   justify-content: center;
   z-index: 1000;
   backdrop-filter: blur(10px);
+}
+
+.vrv {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 1) 15%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  width: 100%;
+  z-index: 1000;
 }
 
 .nav-content {

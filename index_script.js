@@ -57,6 +57,7 @@ if (!detectMob()) {
 }
 else {
     document.getElementById('caption').style = "bottom: 5px; right: 15px; color: white;content: '‘motion’ By Alan Kinsella';";
+    document.getElementById('vrv').style = "width: 100%; left: 0%; position:relative;";
 }
 
 const adaptiveYou = document.getElementById('adaptiveYou');
