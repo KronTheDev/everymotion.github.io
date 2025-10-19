@@ -44,13 +44,67 @@ function animateTrail() {
     requestAnimationFrame(animateTrail);
 }
 
-function toggleTrail() {
-    if (canvas.style.display === 'none') {
-        canvas.style.display = 'initial';
+(function () {
+  const widget = document.getElementById('trailWidget');
+  const panel = document.getElementById('trailPanel');
+  const tab = widget.querySelector('.trail-tab');
+  const checkbox = document.getElementById('trailToggle');
+  const canvas = document.getElementById('trailCanvas');
+
+  const canvasExists = !!canvas;
+  if (canvasExists) {
+    checkbox.checked = (canvas.style.display !== 'none');
+  } else {
+    checkbox.checked = false;
+    checkbox.disabled = true;
+    widget.classList.add('open');
+  }
+
+  checkbox.addEventListener('change', () => {
+    if (!canvas) return;
+    if (checkbox.checked) {
+      canvas.style.display = 'block';
+      window.TRAIL_ENABLED = true;
     } else {
-        canvas.style.display = 'none';
+      canvas.style.display = 'none';
+      window.TRAIL_ENABLED = false;
     }
-}
+  });
+
+  tab.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = widget.classList.toggle('open');
+    tab.setAttribute('aria-expanded', String(isOpen));
+    panel.setAttribute('aria-hidden', String(!isOpen));
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!widget.contains(e.target)) {
+      widget.classList.remove('open');
+      tab.setAttribute('aria-expanded', 'false');
+      panel.setAttribute('aria-hidden', 'true');
+    }
+  });
+
+  tab.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      tab.click();
+    } else if (e.key === 'Escape') {
+      widget.classList.remove('open');
+      tab.setAttribute('aria-expanded', 'false');
+      panel.setAttribute('aria-hidden', 'true');
+      tab.focus();
+    }
+  });
+
+  window.toggleTrail = function (on) {
+    if (!canvas) return;
+    checkbox.checked = !!on;
+    checkbox.dispatchEvent(new Event('change'));
+  };
+})();
+
 
 if (!detectMob()) {
     animateTrail();
@@ -58,6 +112,7 @@ if (!detectMob()) {
 else {
     document.getElementById('caption').style = "bottom: 5px; right: 15px; color: white;content: '‘motion’ By Alan Kinsella';";
     document.getElementById('vrv').style = "width: 100%; left: 0%; position:relative;";
+    document.getElementById('trailWidget').style.display = "none";
 }
 
 const adaptiveYou = document.getElementById('adaptiveYou');
